@@ -1031,10 +1031,8 @@ function supportCard(){
   if(later && now-later<14*DAY) return "";
   if(shown && now-shown<7*DAY && !window.__cardNow) return "";
   let why="";
-  const soon=(typeof COUNTDOWNS!=="undefined"?COUNTDOWNS:[]).some(c=>{const l=cdTarget(c).getTime()-now;return l>=0&&l<=14*DAY;});
   const n=streak(), good=read("bchhub_good");
-  if(soon) why="Exam time is close. Good luck! If this hub is helping you revise,";
-  else if([3,7,14,30,60,100].indexOf(n)>=0) why="🔥 "+n+"-day streak! If this hub is helping,";
+  if([3,7,14,30,60,100].indexOf(n)>=0) why="🔥 "+n+"-day streak! If this hub is helping,";
   else if(good && now-good<2*DAY) why="Great score! If this hub is helping,";
   if(!why) return "";
   window.__cardNow=true;
