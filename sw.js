@@ -1,5 +1,5 @@
 /* MBBS Study Hub offline worker. BUILD is stamped when the site is packaged. */
-const BUILD = "20261119110041";
+const BUILD = "20261120095505";
 const CACHE = "studyhub-" + BUILD;
 const CORE = ["./", "manifest.webmanifest", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png"];
 
