@@ -1,5 +1,5 @@
 /* MBBS Study Hub offline worker. BUILD is stamped when the site is packaged. */
-const BUILD = "20261120095505";
+const BUILD = "20261120231236";
 const CACHE = "studyhub-" + BUILD;
 const CORE = ["./", "manifest.webmanifest", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png"];
 
@@ -35,6 +35,10 @@ self.addEventListener("fetch", e => {
   const req = e.request; if(req.method !== "GET") return;
   const url = new URL(req.url);
   if(req.mode === "navigate" && url.origin === location.origin){ e.respondWith(pageRequest(e)); return; }
+  if(url.origin === location.origin && /\/updates\.json$/.test(url.pathname)){
+    e.respondWith(fetch(req, {cache: "no-store"}).then(res => { if(res.ok){ const cp = res.clone(); caches.open(CACHE).then(c => c.put(req, cp)); } return res; }).catch(() => caches.match(req).then(h => h || new Response("[]", {headers: {"content-type": "application/json"}}))));
+    return;
+  }
   if(url.origin === location.origin){
     e.respondWith(caches.match(req).then(h => h || fetch(req).then(res => { if(res.ok){ const cp = res.clone(); caches.open(CACHE).then(c => c.put(req, cp)); } return res; })));
     return;
