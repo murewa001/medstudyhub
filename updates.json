@@ -1,5 +1,26 @@
 [
-  {"id":"2026-11-20-short","date":"2026-11-20","title":"New: Short answer quizzes","body":"Type a short answer (1 to 4 words), check it, then rate yourself. Find them at the end of each course: Physiology, Biochemistry, Anatomy, Histology and Embryology."},
-  {"id":"2026-11-20-past","date":"2026-11-20","title":"New past questions added","body":"Renal (Batch A and B), GIT 2023, Blood and Endocrine test questions are now in the essay trainers, labelled as past questions."},
-  {"id":"2026-11-19-notes","date":"2026-11-19","title":"Notes on every question","body":"Tap the 📝 on any question to write your own note. Notes stay on this device. Back them up from the menu."}
+  {
+    "id": "2026-11-22-viva",
+    "date": "2026-11-22",
+    "title": "New: Viva practice",
+    "body": "Practise oral exams in Anatomy, Physiology and Biochemistry. The examiner asks a question, you answer aloud or type, and the next question depends on how well you did. Open it from the menu."
+  },
+  {
+    "id": "2026-11-20-short",
+    "date": "2026-11-20",
+    "title": "New: Short answer quizzes",
+    "body": "Type a short answer (1 to 4 words), check it, then rate yourself. Find them at the end of each course: Physiology, Biochemistry, Anatomy, Histology and Embryology."
+  },
+  {
+    "id": "2026-11-20-past",
+    "date": "2026-11-20",
+    "title": "New past questions added",
+    "body": "Renal (Batch A and B), GIT 2023, Blood and Endocrine test questions are now in the essay trainers, labelled as past questions."
+  },
+  {
+    "id": "2026-11-19-notes",
+    "date": "2026-11-19",
+    "title": "Notes on every question",
+    "body": "Tap the 📝 on any question to write your own note. Notes stay on this device. Back them up from the menu."
+  }
 ]
