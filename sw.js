@@ -1,7 +1,7 @@
 /* MBBS Study Hub offline worker. BUILD is stamped when the site is packaged. */
-const BUILD = "20261124073804";
+const BUILD = "20261125053617";
 const CACHE = "studyhub-" + BUILD;
-const CORE = ["./", "manifest.webmanifest", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png", "viva-data.js?v=d6e61c6c"];
+const CORE = ["./", "manifest.webmanifest", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png", "viva-data.js?v=ef2f1062"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
