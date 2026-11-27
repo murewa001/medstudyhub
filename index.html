@@ -1022,7 +1022,27 @@ function initManifest(){
   iosHint();
   /* real manifest.webmanifest and sw.js sit next to index.html; just register the offline worker */
   if(!/^https?:$/.test(location.protocol) || !("serviceWorker" in navigator)) return;
+  const PAGE_BUILD = "20261127055328";
+  const staleCheck = () => {
+    if(PAGE_BUILD.indexOf("__") === 0 || !navigator.onLine) return;
+    fetch("sw.js?cb=" + Date.now(), {cache: "no-store"}).then(r => r.ok ? r.text() : "").then(t => {
+      const m = /const BUILD = "([0-9]+)"/.exec(t); if(!m || m[1] === PAGE_BUILD) return;
+      const key = "bchhub_fix_" + m[1];
+      try{ if(sessionStorage.getItem(key)) return; sessionStorage.setItem(key, "1"); }catch(e){ return; }
+      const o = document.createElement("div");
+      o.style.cssText = "position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.75);color:#fff;display:flex;align-items:center;justify-content:center;font:600 17px system-ui,sans-serif;text-align:center;padding:24px";
+      o.textContent = "Updating to the newest version… please wait";
+      document.body.appendChild(o);
+      const done = () => location.reload();
+      Promise.all([
+        navigator.serviceWorker.getRegistrations().then(rs => Promise.all(rs.map(r => r.unregister()))).catch(()=>{}),
+        caches.keys().then(ks => Promise.all(ks.filter(k => k.indexOf("studyhub-") === 0).map(k => caches.delete(k)))).catch(()=>{})
+      ]).then(() => fetch(location.pathname, {cache: "reload"}).catch(()=>{})).then(done, done);
+    }).catch(()=>{});
+  };
+  document.addEventListener("visibilitychange", () => { if(document.visibilityState === "visible") staleCheck(); });
   window.addEventListener("load", () => {
+    setTimeout(staleCheck, 800);
     navigator.serviceWorker.register("sw.js").catch(()=>{});
     navigator.serviceWorker.addEventListener("message", ev => {
       if(ev.data !== "hub-updated" || document.getElementById("updbar")) return;
